@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace ="TowerFloorInfo">
+	<resultMap type="com.dto.TowerFloorDto" id="TowerFloorDto">
+		<id column = "TOWER_FLOOR_ID" property="towerFloorId"/>
+    	<result column="LAYER" property="layer"/>
+    	<result column="FLOOR_NUM" property="floorNum"/>
+    	<result column="FLOOR_URL" property="floorURL"/>
+	</resultMap>
+	
+	
+	<insert id="insertTowerFloorInfo">
+		insert into TOWER_FLOOR_INFO(LAYER,FLOOR_NUM,FLOOR_URL)
+		values(#{layer},#{floorNum},#{floorURL})
+	</insert>
+
+	<!-- TowerFloorMonster 에서 FLOOR_NUM 얻기위해 사용할것임 -->
+	<select id="getFloorNum" resultType = "int">
+    	select FLOOR_NUM from TOWER_FLOOR_INFO where FLOOR_NUM = #{floorNum}
+    </select>
+
+</mapper>

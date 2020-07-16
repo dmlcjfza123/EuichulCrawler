@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace ="TowerInfo">
+	<resultMap type="com.dto.TowerDto" id="TowerDto">
+		<id column = "TOWER_ID" property="towerId"/>
+    	<result column="NAME" property="name"/>
+	</resultMap>
+	
+	<insert id="insertTowerInfo">
+		insert into TOWER_INFO(NAME)
+		values(#{name})
+	</insert>
+	
+	<!-- TowerBossDto 에서 towerId 를 얻기위해 사용할것임 -->
+	<select id="getTowerId" resultType = "int">
+    	select TOWER_ID from TOWER_INFO where NAME = #{name}
+    </select>
+	
+</mapper>

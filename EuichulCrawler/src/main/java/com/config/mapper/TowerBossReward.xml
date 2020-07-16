@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace ="TowerBossRewardInfo">
+	<resultMap type="com.dto.TowerBossRewardDto" id="TowerBossRewardDto">
+		<id column = "TOWER_BOSS_REWARD_ID" property="towerBossRewardId"/>
+    	<result column="LAYER" property="layer"/>
+    	<result column="ICON_URL" property="iconURL"/>
+	</resultMap>
+	
+	
+	<insert id="insertTowerBossRewardInfo">
+		insert into TOWER_BOSS_REWARD_INFO(LAYER,ICON_URL)
+		values(#{layer},#{iconURL})
+	</insert>
+
+</mapper>

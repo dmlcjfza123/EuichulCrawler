@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "MonsterEvolutionInfo">
+	<resultMap type="com.dto.MonsterEvolutionDto" id="MonsterEvolutionDto">
+		<id column ="MONSTER_EVOLUTION_ID" property="monsterEvolutionId"/>
+		<result column="MONSTER_ID" property="monsterId"/>
+		<result column="NAME" property="name"/>
+		<result column="REQUIRED_LUCK" property="requiredLuck"/>
+		<result column="ICON_URL" property="iconURL"/>
+	</resultMap>
+	
+	<insert id="insertMonsterEvolutionInfo">
+		insert into MONSTER_EVOLUTION_INFO(MONSTER_ID,NAME,REQUIRED_LUCK,ICON_URL)
+		values(#{monsterId},#{name},#{requiredLuck},#{iconURL})
+	</insert>
+</mapper>

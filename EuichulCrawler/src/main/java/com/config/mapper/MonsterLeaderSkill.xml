@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "MonsterLeaderSkillInfo">
+	<resultMap type="com.dto.MonsterLeaderSkillDto" id="MonsterLeaderSkillDto">
+		<id column ="MONSTER_LEADER_SKILL_ID" property="monsterLeaderSkillId"/>
+		<result column="MONSTER_ID" property="monsterId" />
+		<result column="SKILL_TYPE" property="skillType" />
+		<result column="SKILL_INFO" property="skillInfo" />
+		<result column="SKILL_NAME" property="skillName" />
+	</resultMap>
+	
+		<insert id="insertMonsterLeaderSkillInfo">
+		insert into MONSTER_LEADER_SKILL_INFO(MONSTER_ID,SKILL_TYPE,SKILL_INFO,SKILL_NAME)
+		values(#{monsterId},#{skillType},#{skillInfo},#{skillName})
+	</insert>
+
+</mapper>

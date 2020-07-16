@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace ="TowerFloorMonsterInfo">
+	<resultMap type="com.dto.TowerFloorMonsterDto" id="TowerFloorMonsterDto">
+		<id column = "TOWER_FLOOR_MONSTER_ID" property="towerFloorMonsterId"/>
+    	<result column="FLOOR_NUM" property="floorNum"/>
+    	<result column="ICON_URL" property="iconURL"/>
+    	<result column="HP" property="hp"/>
+    	<result column="LAYER" property="layer"/>
+	</resultMap>
+	
+	
+	<insert id="insertTowerFloorMonsterInfo">
+		insert into TOWER_FLOOR_MONSTER_INFO(FLOOR_NUM,ICON_URL,HP,LAYER)
+		values(#{floorNum},#{iconURL},#{hp},#{layer})
+	</insert>
+
+</mapper>

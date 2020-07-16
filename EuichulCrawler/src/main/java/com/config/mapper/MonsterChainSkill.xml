@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "MonsterChainSkillInfo">
+	<resultMap type="com.dto.MonsterChainSkillDto" id="MonsterChainSkillDto">
+		<id column ="MONSTER_CHAIN_SKILL_ID" property="monsterChainSkillId"/>
+		<result column="MONSTER_ID" property="monsterId" />
+		<result column="SKILL_TYPE" property="skillType" />
+		<result column="NUMBER_OF_TRIGGERS" property="numberOfTriggers" />
+		<result column="SKILL_INFO" property="skillInfo" />
+		<result column="SKILL_NAME" property="skillName" />
+	</resultMap>
+	
+		<insert id="insertMonsterChainSkillInfo">
+		insert into MONSTER_CHAIN_SKILL_INFO(MONSTER_ID,SKILL_TYPE,NUMBER_OF_TRIGGERS,SKILL_INFO,SKILL_NAME)
+		values(#{monsterId},#{skillType},#{numberOfTriggers},#{skillInfo},#{skillName})
+	</insert>
+
+</mapper>

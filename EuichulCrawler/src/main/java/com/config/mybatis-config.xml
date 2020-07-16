@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- settings 종류
+cacheEnabled : 동일한 쿼리 실행시 옵티마이저에 의해서 재빌드 되지 않고 두번째사람은 첫번째 사람이 쓴 쿼리를 사용하게할건지
+defaultExecutorType  : 디폴트 실행자 (DML문(insert,update,delete) 관련 )
+					  동일한 쿼리문이 여러번 날라갈때 한건씩 처리할거냐  한번에 모아서 commit 할거냐
+					  SIMPLE - 한건씩 / REUSE - 동일한 쿼리문이 사용될시 쿼리빌더 안돌고 가져다쓰는거
+					  BATCH - 쭉 모아서 100~10000건 한번에 처리
+					  거의 SIMPLE 로 씀 DIFAULT 설정임.
+jdbcTypeForNull : DB의 JDBC타입들에대해 Null값에대한 처리를 어떻게 할것이냐에대한 설정
+mapUnderscoreToCamelCase : VO는 거의 camlCase / DB는 대문자 처리 구분자는 언더바
+						   DB의 칼럼명이 ACOLUMN 로 대문자면 자바 DTO에서 받을때 aColumn 으로 카멜케이스로 변환시켜 자동으로 받아주느냐에대한 설정.  
+
+ -->
+
+
+</configuration>

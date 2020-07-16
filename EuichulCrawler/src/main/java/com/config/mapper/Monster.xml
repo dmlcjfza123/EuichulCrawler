@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 테이블마다 mapper를 만들어주는게 관리하기 편하다. 따라서 namespace는 테이블명의 이름이 됨. --> 
+<mapper namespace ="MonsterInfo">
+	<!-- resultMap의 type에대한 변수명이 id 이다. resultMap은 ResultSet과 비슷함.-->
+	<resultMap type="com.dto.MonsterDto" id="MonsterDto">
+	<!-- DB의 PK가 id로 쓰인다. 나머지는 result로 등록시켜주면된다. 
+    		column은 DB의 컬럼명, property는 java로 작성한 Dto(com.dto.MonsterDto)의 변수명 -->
+    <id column = "MONSTER_ID" property="monsterId"/>
+    <result column="ICON_URL" property="iconURL"/>
+    <result column="NAME" property="name"/>
+    <result column="TYPE" property="type"/>
+    <result column="ATTRIBUTE" property="attribute"/>
+    <result column="ATTRIBUTE_SUB" property="attributeSub"/>
+    <result column="POINTS" property="points"/>
+    <result column="BOOK_NUM" property="bookNum"/>
+    <result column="RARITY" property="rarity"/>
+    <result column="HP" property="hp"/>
+    <result column="ATTACK" property="attack"/>
+    <result column="SCREENSHOT_URL" property="screenshotURL"/>
+	</resultMap>
+
+
+	<!-- id는 함수명처럼 쓰이지만 오버로딩 되지는 않는다. id는 유니크한 값을 가져야한다. -->
+    <!-- Dao 에서 아래 셀렉트문의 id를 함수명처럼 가져다 쓰고있고, 결과값은 id 가 MonsterDto인 위에서 지정한 resultMap에 저장시켜주겠다는 의미
+    	resultMap = id로 지정할수도 있지만, type 으로도 지정할 수 있다. type 으로 지정할경우, com.dto.MonsterDto 가 작성될것이다. 
+    	실제 java로 작성된 Dao에서 아래 코드문처럼 사용되고있다.  
+    	return sqlSessionFactory.openSession().selectList("MonsterDto.getMonster"); -->
+    <!-- xml에서 부등호 < 나 > 가 태그로 먹히기때문에, 문자열그대로 적용시키려면 <![CDATA[?]]> 안에 부등호를 넣어주어야한다. -->
+
+	<!-- 주의, MONSTER_ID 는 AUTO_INCREMENT 되기때문에, 값을 입력시킬 필요가 없다. -->
+	<insert id="insertMonsterInfo">
+		insert into MONSTER_INFO(ICON_URL,NAME,TYPE,ATTRIBUTE,ATTRIBUTE_SUB,POINTS,BOOK_NUM,RARITY,HP,ATTACK,SCREENSHOT_URL)
+		values(#{iconURL},#{name},#{type},#{attribute},#{attributeSub},#{points},#{bookNum},#{rarity},#{hp},#{attack},#{screenshotURL})
+	</insert>
+	
+	<select id="getMonsterId" resultType = "int">
+    	select MONSTER_ID from MONSTER_INFO where NAME = #{name}
+    </select>
+	
+</mapper>

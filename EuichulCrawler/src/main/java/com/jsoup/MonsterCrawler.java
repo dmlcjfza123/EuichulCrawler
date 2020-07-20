@@ -110,6 +110,14 @@ public class MonsterCrawler {
 	@Autowired private static Queue<DownloadAndS3UploadDto> mcMessageQueue;
 	@Autowired private MonsterDao monsterDao;
 	
+	//WAS에서 contextDestroyed 신호가 오면 더이상 넣지못하게 제어하기위한 불린변수.
+	private static boolean isCanAddinMQ = true;
+	
+	//contextDestroyed 신호를 받으면 더이상 넣지못하게 제어값을 변경한다.
+	public static void setMQAddFlagChange() {
+		isCanAddinMQ = !isCanAddinMQ;
+	}
+	
 	public MonsterDao getMonsterDao() {
 		return monsterDao;
 	}
@@ -1880,7 +1888,8 @@ public class MonsterCrawler {
 						.build();
 				//downloadAndS3UploadService(downloadAndS3UploadDto);
 				//기존에는 바로 처리했었다면 메시지 큐를 이용해서 다른 스레드를 통해 돌릴 수 있도록 Dto를 큐에 담는다.
-				mcMessageQueue.add(downloadAndS3UploadDto);
+				if(isCanAddinMQ == true)
+					mcMessageQueue.add(downloadAndS3UploadDto);
 				
 				
 			//	//폴더에 이미지 저장하기.
@@ -2076,7 +2085,8 @@ public class MonsterCrawler {
 									.build();
 							//downloadAndS3UploadService(downloadAndS3UploadDto);
 							//기존에는 바로 처리했었다면 메시지 큐를 이용해서 다른 스레드를 통해 돌릴 수 있도록 Dto를 큐에 담는다.
-							mcMessageQueue.add(downloadAndS3UploadDto);
+							if(isCanAddinMQ == true)
+								mcMessageQueue.add(downloadAndS3UploadDto);
 							
 							
 							//플로어 이미지 저장
@@ -2392,7 +2402,8 @@ public class MonsterCrawler {
 										.build();
 								//downloadAndS3UploadService(downloadAndS3UploadDto);
 								//기존에는 바로 처리했었다면 메시지 큐를 이용해서 다른 스레드를 통해 돌릴 수 있도록 Dto를 큐에 담는다.
-								mcMessageQueue.add(downloadAndS3UploadDto);
+								if(isCanAddinMQ == true)
+									mcMessageQueue.add(downloadAndS3UploadDto);
 //								
 //								//플로어 이미지 저장
 //								URL imgUrl = new URL(iconUrlStrs);
